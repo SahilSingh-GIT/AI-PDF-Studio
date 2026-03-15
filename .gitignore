@@ -1,0 +1,71 @@
+# ─── Dependencies ────────────────────────────────────────────────────────────
+node_modules/
+.npm
+venv/
+backend/venv/
+
+
+# ─── Environment Files ────────────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+frontend/.env
+frontend/.env.local
+backend/.env
+backend/.env.local
+
+# ─── Build Outputs ───────────────────────────────────────────────────────────
+dist/
+build/
+frontend/dist/
+frontend/build/
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+backend/src/logs/*.log
+backend/src/logs/**
+
+# ─── Runtime & Upload Directories ────────────────────────────────────────────
+backend/src/uploads/*
+backend/src/temp/*
+!backend/src/uploads/.gitkeep
+!backend/src/temp/.gitkeep
+!backend/src/logs/.gitkeep
+
+# ─── Storage (production file storage) ───────────────────────────────────────
+backend/storage/originals/*
+backend/storage/processed/*
+backend/storage/thumbnails/*
+backend/storage/temp/*
+!backend/storage/originals/.gitkeep
+!backend/storage/processed/.gitkeep
+!backend/storage/thumbnails/.gitkeep
+!backend/storage/temp/.gitkeep
+
+# ─── OS & Editor ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ─── Testing ─────────────────────────────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── Vite ────────────────────────────────────────────────────────────────────
+frontend/.vite/
+
+# ─── Misc ────────────────────────────────────────────────────────────────────
+*.pid
+*.seed
+*.pid.lock
+.cache/
