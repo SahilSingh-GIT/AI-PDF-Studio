@@ -1,0 +1,29 @@
+{
+  "name": "pdf-studio-ai",
+  "version": "1.0.0",
+  "description": "AI PDF Studio — Production-quality AI-powered document workspace",
+  "private": true,
+  "scripts": {
+    "frontend": "npm run dev --prefix frontend",
+    "backend": "npm run dev --prefix backend",
+    "dev": "concurrently --kill-others-on-fail --names \"BACKEND,FRONTEND\" --prefix-colors \"cyan,magenta\" \"npm run backend\" \"npm run frontend\"",
+    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend",
+    "lint": "echo \"Linting not yet configured\"",
+    "test": "echo \"Tests not yet configured\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "pdf",
+    "ai",
+    "document",
+    "workspace"
+  ],
+  "author": "AI PDF Studio Team",
+  "license": "MIT"
+}
