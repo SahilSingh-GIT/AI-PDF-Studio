@@ -1,0 +1,47 @@
+{
+  "name": "pdf-studio-ai-backend",
+  "version": "1.0.0",
+  "description": "AI PDF Studio — Express Backend API",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "lint": "echo \"Linting not yet configured\""
+  },
+  "dependencies": {
+    "@langchain/community": "^1.1.29",
+    "@langchain/core": "^1.2.3",
+    "@langchain/google-genai": "^2.2.0",
+    "@langchain/textsplitters": "^1.0.1",
+    "archiver": "^8.0.0",
+    "chromadb": "^3.5.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "helmet": "^7.1.0",
+    "langchain": "^1.5.4",
+    "mongoose": "^9.8.0",
+    "morgan": "^1.10.0",
+    "multer": "^2.2.0",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.1",
+    "pdf-poppler": "^0.2.3",
+    "pdfjs-dist": "^6.1.200",
+    "uuid": "^14.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "pdf",
+    "ai"
+  ],
+  "author": "AI PDF Studio Team",
+  "license": "MIT"
+}
