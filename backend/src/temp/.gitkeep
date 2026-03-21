@@ -1,0 +1,3 @@
+# temp/ — Temporary processing files are stored here.
+# This directory is intentionally empty and gitignored.
+# Files here are intermediate artifacts cleaned up after operations complete.

@@ -1,0 +1,3 @@
+# uploads/ — Uploaded PDF files are stored here temporarily.
+# This directory is intentionally empty and gitignored.
+# Files here are managed by multer middleware.
