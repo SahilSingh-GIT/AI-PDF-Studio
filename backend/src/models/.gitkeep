@@ -1,0 +1,7 @@
+# Models — Data models and schema definitions go here.
+#
+# Convention: one file per entity.
+# Example: documentModel.js, sessionModel.js
+#
+# When a database is added, model files will define schemas/ORM mappings.
+# For now, this directory is reserved for that purpose.
