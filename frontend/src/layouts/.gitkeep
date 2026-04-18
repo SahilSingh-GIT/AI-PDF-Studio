@@ -1,0 +1,7 @@
+# layouts/ — Layout wrapper components go here.
+#
+# Convention: PascalCase file names.
+# Example: AppLayout.jsx, WorkspaceLayout.jsx, SidebarLayout.jsx
+#
+# Layouts define the structural shell (header, sidebar, footer) for pages.
+# Pages render inside layouts — layouts never contain page-specific logic.
