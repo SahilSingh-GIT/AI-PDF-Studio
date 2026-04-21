@@ -1,0 +1,7 @@
+# Services — Business logic and processing services go here.
+#
+# Convention: one file per domain area.
+# Example: documentService.js, sessionService.js, aiService.js, ocrService.js
+#
+# Services are framework-agnostic. They should never import from Express.
+# They receive plain data, perform logic, and return plain results.
