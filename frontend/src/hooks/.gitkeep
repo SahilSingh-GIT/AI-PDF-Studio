@@ -1,0 +1,7 @@
+# hooks/ — Custom React hooks go here.
+#
+# Convention: prefix with 'use', one hook per file.
+# Example: useDocumentSession.js, useOperation.js, useApiHealth.js
+#
+# Hooks encapsulate stateful logic for components.
+# Never put business logic directly in components — extract it here.
