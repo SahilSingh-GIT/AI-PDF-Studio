@@ -1,0 +1,9 @@
+# assets/ — Static assets go here.
+#
+# Subdirectory conventions:
+#   assets/icons/     — SVG icon files
+#   assets/images/    — Raster images (PNG, JPEG, WebP)
+#   assets/fonts/     — Self-hosted font files (if not using Google Fonts)
+#
+# Import assets directly in JSX:
+#   import logo from '@/assets/images/logo.svg';
