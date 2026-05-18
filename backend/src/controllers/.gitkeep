@@ -1,0 +1,7 @@
+# Controllers — Future feature controllers go here.
+#
+# Convention: one file per resource/feature.
+# Example: documentController.js, sessionController.js, aiController.js
+#
+# Controllers are thin — they receive the request, call a service, and return a response.
+# Business logic must live in src/services/, not here.

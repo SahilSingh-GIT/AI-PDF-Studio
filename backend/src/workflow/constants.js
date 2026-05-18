@@ -1,0 +1,21 @@
+/**
+ * workflow/constants.js
+ *
+ * Single source of truth for workflow-related constants to prevent typos.
+ */
+
+export const CAPABILITIES = {
+  SEARCHABLE_TEXT: 'SEARCHABLE_TEXT',
+  PAGE_METADATA: 'PAGE_METADATA',
+  THUMBNAILS: 'THUMBNAILS',
+  EMBEDDINGS: 'EMBEDDINGS',
+  AI_SUMMARY: 'AI_SUMMARY',
+  TRANSLATION: 'TRANSLATION',
+};
+
+export const OPERATION_STATUS = {
+  AVAILABLE: 'AVAILABLE',
+  NOT_AVAILABLE: 'NOT_AVAILABLE',
+  COMING_SOON: 'COMING_SOON',
+  EXPERIMENTAL: 'EXPERIMENTAL',
+};

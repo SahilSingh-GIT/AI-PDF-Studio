@@ -1,0 +1,7 @@
+# Validators — Request validation schemas go here.
+#
+# Convention: one file per route group.
+# Example: documentValidators.js, sessionValidators.js
+#
+# Use Joi, Zod, or express-validator when validation is needed.
+# Validators should be called in routes before controllers.
