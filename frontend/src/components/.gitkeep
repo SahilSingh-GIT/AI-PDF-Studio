@@ -1,0 +1,7 @@
+# components/ — Shared, reusable UI components go here.
+#
+# Convention: PascalCase file names, one component per file.
+# Example: Button.jsx, Modal.jsx, Spinner.jsx, FileDropzone.jsx
+#
+# Components here must be generic and reusable across pages.
+# Feature-specific components belong in their own feature folder.

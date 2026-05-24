@@ -1,0 +1,9 @@
+# context/ — React Context providers go here.
+#
+# Convention: one file per domain context.
+# Example: DocumentSessionContext.jsx, UIContext.jsx, AuthContext.jsx
+#
+# Each context file should export:
+#   - The Context object
+#   - A Provider component
+#   - A custom hook (e.g., useDocumentSession)
