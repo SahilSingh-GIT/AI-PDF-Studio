@@ -23,41 +23,54 @@ const PPT_EXTENSIONS = ['ppt', 'pptx'];
 const EXCEL_EXTENSIONS = ['xls', 'xlsx'];
 
 /**
- * Executes a PowerShell script for Microsoft Office COM Automation
+ * Converts Office documents to PDF using LibreOffice (cross-platform)
  */
-const convertViaOfficeAutomation = (scriptName, inputPath, outputPath) => {
+const convertViaLibreOffice = (inputPath, outputPath) => {
   return new Promise((resolve, reject) => {
-    const scriptPath = path.join(__dirname, 'converters', 'scripts', scriptName);
+    const outDir = path.dirname(outputPath);
     
-    // powershell -ExecutionPolicy Bypass -File script.ps1 -inPath "..." -outPath "..."
+    // LibreOffice on Linux/macOS is usually 'soffice'. On Windows it can also be 'soffice' if added to PATH.
+    const sofficeCmd = 'soffice';
+    
+    // soffice --headless --convert-to pdf --outdir <dir> <file>
     const args = [
-      '-ExecutionPolicy', 'Bypass',
-      '-NoProfile',
-      '-NonInteractive',
-      '-File', scriptPath,
-      '-inPath', inputPath,
-      '-outPath', outputPath
+      '--headless',
+      '--convert-to', 'pdf',
+      '--outdir', outDir,
+      inputPath
     ];
 
-    logger.debug(`[ConversionService] Spawning PowerShell for ${scriptName}`);
-    const proc = spawn('powershell.exe', args);
+    logger.debug(`[ConversionService] Spawning LibreOffice (soffice)`);
+    const proc = spawn(sofficeCmd, args);
 
     let stderr = '';
     proc.stderr.on('data', data => { stderr += data.toString(); });
     let stdout = '';
     proc.stdout.on('data', data => { stdout += data.toString(); });
 
-    proc.on('close', code => {
+    proc.on('close', async (code) => {
       if (code !== 0) {
-        logger.error(`[ConversionService] Office Automation failed: ${stderr || stdout}`);
-        return reject(new Error(`Microsoft Office Automation failed. Is Office installed? Error: ${stderr || stdout}`));
+        logger.error(`[ConversionService] LibreOffice conversion failed: ${stderr || stdout}`);
+        return reject(new Error(`LibreOffice conversion failed. Is LibreOffice installed? Error: ${stderr || stdout}`));
+      }
+      
+      const baseName = path.basename(inputPath, path.extname(inputPath));
+      const loOutputPath = path.join(outDir, `${baseName}.pdf`);
+      
+      if (loOutputPath !== outputPath) {
+        try {
+          await fs.rename(loOutputPath, outputPath);
+        } catch (renameErr) {
+          logger.error(`[ConversionService] Failed to rename LibreOffice output: ${renameErr.message}`);
+          return reject(new Error('Failed to complete conversion due to file system error.'));
+        }
       }
       resolve();
     });
 
     proc.on('error', err => {
-      logger.error(`[ConversionService] Failed to spawn powershell: ${err.message}`);
-      reject(new Error('Failed to run conversion script. Ensure powershell is available.'));
+      logger.error(`[ConversionService] Failed to spawn soffice: ${err.message}`);
+      reject(new Error('Failed to run LibreOffice. Ensure soffice is in your PATH.'));
     });
   });
 };
@@ -115,19 +128,19 @@ export const convertToPdf = async (tempPath, originalName) => {
 
   if (WORD_EXTENSIONS.includes(ext)) {
     logger.info(`[ConversionService] Converting Word document ${originalName} to PDF...`);
-    await convertViaOfficeAutomation('convert-word.ps1', tempPath, convertedPath);
+    await convertViaLibreOffice(tempPath, convertedPath);
     return { convertedPath };
   }
   
   if (PPT_EXTENSIONS.includes(ext)) {
     logger.info(`[ConversionService] Converting PowerPoint ${originalName} to PDF...`);
-    await convertViaOfficeAutomation('convert-powerpoint.ps1', tempPath, convertedPath);
+    await convertViaLibreOffice(tempPath, convertedPath);
     return { convertedPath };
   }
   
   if (EXCEL_EXTENSIONS.includes(ext)) {
     logger.info(`[ConversionService] Converting Excel ${originalName} to PDF...`);
-    await convertViaOfficeAutomation('convert-excel.ps1', tempPath, convertedPath);
+    await convertViaLibreOffice(tempPath, convertedPath);
     return { convertedPath };
   }
   

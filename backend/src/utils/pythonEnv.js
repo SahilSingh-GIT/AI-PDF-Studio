@@ -10,7 +10,11 @@ import path from 'path';
 export class PythonEnv {
   static get pythonPath() {
     // Isolated virtual environment path
-    return path.join(process.cwd(), 'venv', 'Scripts', 'python.exe');
+    const isWindows = process.platform === 'win32';
+    if (isWindows) {
+      return path.join(process.cwd(), 'venv', 'Scripts', 'python.exe');
+    }
+    return path.join(process.cwd(), 'venv', 'bin', 'python');
   }
 
   /**
