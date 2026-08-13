@@ -1,187 +1,104 @@
-# AI PDF Studio
+# AI PDF Studio 📄✨
 
-> **Upload Once. Work Continuously. Download Once.**
+**AI PDF Studio** is a full-stack, AI-powered web application designed to make working with PDF documents simple, fast, and intelligent. 
 
-AI PDF Studio is a production-quality, AI-powered document workspace built for the browser. It is **not** a collection of PDF tools — it is a unified workspace where a single uploaded document becomes the active session, and every capability operates on that session.
-
----
-
-## Vision
-
-Most PDF tools are a collection of isolated pages (Compress PDF, Merge PDF, Rotate PDF). AI PDF Studio is architecturally different:
-
-- **Document Session First** — the uploaded document becomes the root entity. Every feature operates on the session, not on its own.
-- **Operations, Not Pages** — Rotate, OCR, Compress, AI Summary, and Chat are *operations* applied to the document session, not independent tools.
-- **AI-Native** — AI features (summarization, semantic search, chat, smart tagging) are first-class capabilities, not add-ons.
-- **Scalable** — built to grow from a simple viewer into a full document intelligence platform.
+Unlike traditional tools that force you to upload a file again and again for each small change, AI PDF Studio operates on a **Document Session architecture**: upload your document once, view it in an interactive browser viewer, perform multiple operations (like rotating, merging, splitting, or asking AI questions), and download the final result whenever you are done!
 
 ---
 
-## Tech Stack
+## 🌟 Key Features Implemented
 
-| Layer      | Technology                                    |
-|------------|-----------------------------------------------|
-| Frontend   | React 18, Vite 5, Tailwind CSS 3, React Router DOM 6, Axios |
-| Backend    | Node.js ≥18, Express 4, ES Modules            |
-| Security   | Helmet, CORS, express-rate-limit              |
-| Middleware | Morgan, Compression, Cookie-Parser, Multer    |
-| Dev Tools  | Concurrently, node --watch                    |
+### 1. 📖 Interactive PDF Viewer & Workspace
+- Built-in high-performance **PDF.js viewer** with page navigation, zoom controls, and thumbnail sidebar.
+- **Document Session & Versioning**: Work continuously on a document with full version history and restore capabilities.
 
----
+### 2. ✂️ Page Manipulation Tools
+- **Rotate Pages**: Rotate individual or selected pages left (-90°) or right (+90°).
+- **Delete Pages**: Remove unwanted pages instantly.
+- **Reorder Pages**: Drag-and-drop page thumbnails into any order.
+- **Duplicate & Extract Pages**: Duplicate pages or extract selected page ranges into new PDFs.
+- **Insert Pages**: Add blank pages wherever needed.
+- **Page Numbers**: Add customizable header/footer page numbers.
 
-## Folder Structure
+### 3. 🔒 Document Security & Management
+- **Password Protection**: Encrypt PDFs with custom passwords.
+- **Remove Security**: Decrypt password-protected PDFs.
+- **Permissions Control**: Restrict or allow printing, content copying, and editing.
+- **Digital Signature**: Certify documents with digital signatures.
 
-```
-PDF-StudioAI/
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/         Static assets (icons, images, fonts)
-│   │   ├── components/     Shared, reusable UI components
-│   │   ├── layouts/        Layout wrapper components (shell, sidebar)
-│   │   ├── pages/          Page-level components
-│   │   ├── routes/         Centralized route definitions
-│   │   ├── context/        React Context providers
-│   │   ├── hooks/          Custom React hooks
-│   │   ├── services/       API service layer (Axios instance)
-│   │   ├── utils/          Pure utility functions
-│   │   ├── constants/      App-wide constants
-│   │   ├── styles/         Global CSS, design tokens
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── package.json
-│   └── .env.example
-│
-├── backend/
-│   ├── src/
-│   │   ├── config/         Env, CORS, rate limiting config
-│   │   ├── controllers/    Request handlers (thin, call services)
-│   │   ├── routes/         Express routers
-│   │   ├── middleware/     Custom middleware (error, 404, logging)
-│   │   ├── services/       Business logic (framework-agnostic)
-│   │   ├── models/         Data models / schema definitions
-│   │   ├── validators/     Request validation schemas
-│   │   ├── utils/          Backend utility functions
-│   │   ├── constants/      Shared backend constants
-│   │   ├── uploads/        Uploaded file storage (gitignored)
-│   │   ├── temp/           Temporary processing files (gitignored)
-│   │   ├── logs/           Log output (gitignored)
-│   │   ├── app.js          Express app factory
-│   │   └── server.js       HTTP server bootstrap
-│   ├── package.json
-│   └── .env.example
-│
-├── docs/
-│   └── ARCHITECTURE.md
-│
-├── .gitignore
-├── package.json            Root orchestrator (concurrently)
-└── README.md
-```
+### 4. 🗜️ Document Optimization & Conversion
+- **Compress PDF**: Reduce file size while keeping text and image quality.
+- **Split & Merge**: Split PDFs into separate files or merge multiple PDFs into one.
+- **Watermark**: Overlay text or image watermarks onto document pages.
+- **Export Options**: Export PDF pages as Images, Word (`.docx`), PowerPoint (`.pptx`), or plain text (`.txt`).
+
+### 5. 🤖 AI Document Intelligence (Gemini AI & LangChain)
+- **AI Summary**: Automatically generate concise summaries of long PDF documents.
+- **AI Key Insights**: Extract main takeaways, bullet points, and key figures.
+- **Chat with Document**: Ask questions about your PDF and get instant, context-aware answers using RAG (LangChain + ChromaDB vectorstore + Gemini AI).
+- **AI Translation**: Translate document content into multiple languages.
+- **Semantic Search**: Search for concepts and meanings within your PDF beyond simple keyword matches.
 
 ---
 
-## Installation
+## 🛠️ Tech Stack
 
-```bash
-# 1. Clone the repository
-git clone <repo-url>
-cd PDF-StudioAI
+### Frontend
+- **Framework**: React 18 + Vite
+- **Styling**: Tailwind CSS (Clean neutral dark theme)
+- **Icons**: Lucide React
+- **PDF Engine**: PDF.js (`pdfjs-dist`)
+- **Drag & Drop**: `@dnd-kit/core` & `@dnd-kit/sortable`
+- **HTTP Client**: Axios
 
-# 2. Install all dependencies (root + frontend + backend)
-npm run install:all
-
-# 3. Configure environment variables
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-# Edit .env files with your values
-```
-
----
-
-## Development Commands
-
-| Command              | Description                                         |
-|----------------------|-----------------------------------------------------|
-| `npm run dev`        | Start both frontend and backend concurrently        |
-| `npm run frontend`   | Start only the React frontend (port 5173)           |
-| `npm run backend`    | Start only the Express backend (port 3001)          |
-| `npm run install:all`| Install dependencies for root, frontend, and backend|
+### Backend
+- **Server**: Node.js & Express API
+- **Database**: MongoDB & Mongoose
+- **PDF Manipulation**: `pdf-lib`, `pdf-parse`, `pdf-poppler`
+- **AI Framework**: LangChain (`@langchain/community`, `@langchain/google-genai`)
+- **AI Model**: Google Gemini API
+- **Vector Storage**: ChromaDB (for semantic document retrieval)
 
 ---
 
-## Architecture
+## 🚀 Getting Started
 
-```
-React UI (port 5173)
-     │
-     │  HTTP / Axios
-     ▼
-Express API (port 3001)
-     │
-     │  Service calls
-     ▼
-Business Services
-     │
-     │  Processing calls
-     ▼
-Document Processing
-     │
-     │  Storage I/O
-     ▼
-Storage (uploads/, temp/)
-```
+### Prerequisites
+- **Node.js** (v18 or higher)
+- **MongoDB** (running locally or MongoDB Atlas URI)
+- **Google Gemini API Key** (set in `backend/.env`)
 
-### Key Architecture Principles
+### Installation & Setup
 
-1. **Document Session First** — all features are operations on a session entity, not independent tools.
-2. **Operations Pattern** — each capability (rotate, OCR, compress, chat) is a typed operation applied to the active session.
-3. **Strict Separation** — UI → API → Services → Processing → Storage. No layer skips.
-4. **Modular by Design** — every layer can be swapped or scaled independently.
-5. **No Framework Lock-in** — business services are pure JavaScript, not tied to Express.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/SahilSingh-GIT/AI-PDF-Studio.git
+   cd AI-PDF-Studio
+   ```
 
----
+2. **Install dependencies**:
+   ```bash
+   npm run install:all
+   ```
 
-## API Reference
+3. **Configure Environment Variables**:
+   Create a `.env` file in the `backend/` directory based on `backend/.env.example`:
+   ```env
+   PORT=3001
+   MONGODB_URI=mongodb://localhost:27017/ai-pdf-studio
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
 
-| Endpoint          | Method | Description             |
-|-------------------|--------|-------------------------|
-| `/api/health`     | GET    | Server health check     |
+4. **Run the Application**:
+   Start both backend (Express) and frontend (Vite) concurrently with a single command:
+   ```bash
+   npm run dev
+   ```
+   - Frontend runs at `http://localhost:5173`
+   - Backend API runs at `http://localhost:3001`
 
 ---
 
-## Milestone Roadmap
+## 📜 License
 
-| Milestone | Focus                                                       | Status      |
-|-----------|-------------------------------------------------------------|-------------|
-| 1         | Project Foundation & Architecture                           | ✅ Complete  |
-| 2         | Document Session, Upload, PDF Viewer                        | 🔜 Next     |
-| 3         | Core PDF Operations (Rotate, Merge, Split, Compress)        | 📋 Planned  |
-| 4         | OCR Integration                                             | 📋 Planned  |
-| 5         | AI Summary & Smart Tagging (Gemini)                         | 📋 Planned  |
-| 6         | AI Chat with Document (RAG)                                 | 📋 Planned  |
-| 7         | Semantic Search                                             | 📋 Planned  |
-| 8         | Background Jobs (BullMQ + Redis)                            | 📋 Planned  |
-| 9         | Version History & Undo                                      | 📋 Planned  |
-| 10        | Document Caching & Performance                              | 📋 Planned  |
-
----
-
-## Coding Standards
-
-- **JavaScript only** — TypeScript is not used.
-- **ES Modules** — `import`/`export` everywhere, no CommonJS.
-- **Small, focused modules** — one responsibility per file.
-- **Constants over magic strings** — import from `constants/index.js`.
-- **Services own business logic** — controllers are thin request handlers.
-- **Hooks own component logic** — components are thin render functions.
-- **Clean architecture layers** — no layer reaches into another's layer.
-- **Environment variables** — loaded via `config/env.js`, never from `process.env` directly.
-- **Error handling** — always use `next(err)`, never `res.json` in error paths.
-
----
-
-## License
-
-MIT © AI PDF Studio Team
+This project is open source and available under the [MIT License](LICENSE).
