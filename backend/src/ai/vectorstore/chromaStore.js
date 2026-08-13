@@ -1,5 +1,5 @@
 import { Chroma } from "@langchain/community/vectorstores/chroma";
-import { MemoryVectorStore } from "langchain/vectorstores/memory";
+import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
 import config from "../../config/env.js";
 import { getEmbeddingsInstance } from "../embeddings/embeddingService.js";
 import logger from "../../utils/logger.js";

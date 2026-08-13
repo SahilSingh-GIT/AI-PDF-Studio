@@ -10,6 +10,7 @@
     "lint": "echo \"Linting not yet configured\""
   },
   "dependencies": {
+    "@langchain/classic": "^1.0.42",
     "@langchain/community": "^1.1.29",
     "@langchain/core": "^1.2.3",
     "@langchain/google-genai": "^2.2.0",
