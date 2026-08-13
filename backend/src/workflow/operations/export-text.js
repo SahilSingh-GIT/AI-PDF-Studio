@@ -3,7 +3,7 @@ import { getAbsolutePath } from '../../services/storageService.js';
 import fs from 'fs/promises';
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
-const { PDFParse } = require('pdf-parse');
+const pdfParse = require('pdf-parse');
 import logger from '../../utils/logger.js';
 
 registerOperation({
@@ -19,14 +19,8 @@ registerOperation({
       const pdfPath = getAbsolutePath(document.storagePath);
       const pdfBuffer = await fs.readFile(pdfPath);
       
-      const parser = new PDFParse({ data: pdfBuffer });
-      let extractedText = '';
-      try {
-        const pdfData = await parser.getText();
-        extractedText = pdfData.text || '';
-      } finally {
-        await parser.destroy();
-      }
+      const pdfData = await pdfParse(pdfBuffer);
+      let extractedText = pdfData.text || '';
       
       if (!extractedText.trim()) {
         throw new Error('No text found in the document. This might be a scanned image-based PDF which requires OCR.');
