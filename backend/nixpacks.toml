@@ -1,13 +1,10 @@
-[providers]
-node = "22"
 
 [phases.setup]
-aptPkgs = [
-    "poppler-utils",
+nixPkgs = [
+    "poppler_utils",
     "libreoffice",
     "qpdf",
-    "python3",
-    "python3-venv"
+    "python3"
 ]
 
 [phases.build]
