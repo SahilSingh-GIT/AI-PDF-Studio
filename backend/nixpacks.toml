@@ -1,0 +1,21 @@
+[providers]
+node = "22"
+
+[phases.setup]
+aptPkgs = [
+    "poppler-utils",
+    "libreoffice",
+    "qpdf",
+    "python3",
+    "python3-venv"
+]
+
+[phases.build]
+cmds = [
+    "npm install",
+    "python3 -m venv venv",
+    "./venv/bin/pip install --no-cache-dir pdf2docx PyMuPDF python-pptx"
+]
+
+[start]
+cmd = "npm start"
