@@ -1,5 +1,5 @@
 {
-  "name": "pdf-studio-ai-backend",
+  "name": "ai-pdf-studio-backend",
   "version": "1.0.0",
   "description": "AI PDF Studio — Express Backend API",
   "type": "module",

@@ -28,7 +28,7 @@ const config = {
   rateLimitMax: parseInt(getEnv('RATE_LIMIT_MAX_REQUESTS', '100'), 10),
 
   // ── Database ─────────────────────────────────────────────────────────────────
-  mongodbUri: getEnv('MONGODB_URI', 'mongodb://localhost:27017/pdf-studio'),
+  mongodbUri: getEnv('MONGODB_URI', 'mongodb://localhost:27017/ai-pdf-studio'),
 
   // ── File Storage ─────────────────────────────────────────────────────────────
   storagePath: getEnv('STORAGE_PATH', './storage'),

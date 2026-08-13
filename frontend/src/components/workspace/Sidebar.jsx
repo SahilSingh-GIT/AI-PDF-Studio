@@ -6,7 +6,7 @@ import { useIntelligence } from '../../context/IntelligenceContext.jsx';
 import { useSession } from '../../context/SessionContext.jsx';
 import { ChevronDown, ChevronRight, FileText } from 'lucide-react';
 
-const STORAGE_KEY = `pdf-studio-sidebar-v${SIDEBAR_SCHEMA_VERSION}`;
+const STORAGE_KEY = `ai-pdf-studio-sidebar-v${SIDEBAR_SCHEMA_VERSION}`;
 
 const Sidebar = () => {
   const { selectedOperation, setSelectedOperation } = useWorkflow();
