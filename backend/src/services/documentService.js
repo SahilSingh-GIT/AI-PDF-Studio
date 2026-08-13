@@ -29,7 +29,7 @@ export const getDocumentById = async (id) => {
  * @returns {Promise<Document|null>}
  */
 export const softDeleteDocument = async (id, session) => {
-  const options = session ? { new: true, session } : { new: true };
+  const options = session ? { returnDocument: 'after', session } : { returnDocument: 'after' };
   const doc = await Document.findByIdAndUpdate(
     id,
     { isDeleted: true, status: 'deleted' },

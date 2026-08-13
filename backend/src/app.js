@@ -36,6 +36,9 @@ import logger from './utils/logger.js';
 
 const app = express();
 
+// Enable trust proxy for rate limiter behind proxies (Vercel, Render, Cloudflare, etc.)
+app.set('trust proxy', 1);
+
 // ── 1. Security Headers ───────────────────────────────────────────────────────
 app.use(helmet());
 

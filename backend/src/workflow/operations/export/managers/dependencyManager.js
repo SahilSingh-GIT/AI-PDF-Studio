@@ -20,10 +20,12 @@ export class DependencyManager {
       // and verifies their presence.
       const verifyScript = `
 import sys
+import warnings
+warnings.filterwarnings('ignore')
 try:
     import pdf2docx
-    import fitz # PyMuPDF
-    import pptx # python-pptx
+    import pymupdf
+    import pptx
     print("OK")
 except ImportError as e:
     print(f"MISSING_PACKAGE: {e}")
@@ -32,7 +34,7 @@ except ImportError as e:
 
       const { stdout } = await PythonEnv.exec(['-c', verifyScript]);
       
-      if (stdout.trim() === 'OK') {
+      if (stdout.trim().includes('OK')) {
         this._isVerified = true;
         logger.info('[ExportEngine] Python Bridge dependencies verified successfully.');
       } else {

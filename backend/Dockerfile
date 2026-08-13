@@ -12,9 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Set working directory
 WORKDIR /app
 
-# Setup Python virtual environment and dependencies
+# Copy requirements.txt and setup Python virtual environment
+COPY requirements.txt ./
 RUN python3 -m venv /app/venv
-RUN /app/venv/bin/pip install --no-cache-dir pdf2docx PyMuPDF python-pptx
+RUN /app/venv/bin/pip install --no-cache-dir -r requirements.txt
 
 # Copy package.json and package-lock.json
 COPY package*.json ./

@@ -42,7 +42,7 @@ export const executeWorkflow = async (sessionId, operationId, payload = {}) => {
         'executionLock.requestId': requestId
       }
     },
-    { new: true }
+    { returnDocument: 'after' }
   ).populate('document');
 
   if (!session) {

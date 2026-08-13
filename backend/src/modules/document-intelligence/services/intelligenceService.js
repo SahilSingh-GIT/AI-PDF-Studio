@@ -21,7 +21,7 @@ export class IntelligenceService {
             'process.progress': progress
           }
         },
-        { upsert: true, new: true }
+        { upsert: true, returnDocument: 'after' }
       );
     } catch (err) {
       logger.warn(`[IntelligenceService] Failed to update process status: ${err.message}`);
@@ -115,7 +115,7 @@ export class IntelligenceService {
           analysis: rawAnalysis,
           intelligence: { capabilities }
         },
-        { upsert: true, new: true }
+        { upsert: true, returnDocument: 'after' }
       );
       logger.info(`[IntelligenceService] Analysis complete`);
       return intelligenceDoc;
