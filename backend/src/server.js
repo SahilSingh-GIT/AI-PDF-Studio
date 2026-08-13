@@ -66,7 +66,7 @@ const bootstrap = async () => {
   await wipeAllData();
 
   // 5. Start HTTP server
-  server.listen(config.port, () => {
+  server.listen(config.port, '0.0.0.0', () => {
     logger.info('');
     logger.info('  ╔══════════════════════════════════════╗');
     logger.info('  ║       AI PDF Studio — Backend        ║');
