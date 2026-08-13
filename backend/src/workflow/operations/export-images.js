@@ -5,7 +5,7 @@ import { createWriteStream } from 'fs';
 import path from 'path';
 import os from 'os';
 import { ZipArchive } from 'archiver';
-import pdfPoppler from 'pdf-poppler';
+import { Poppler } from 'node-poppler';
 import crypto from 'crypto';
 import logger from '../../utils/logger.js';
 
@@ -25,14 +25,12 @@ registerOperation({
       const pdfPath = getAbsolutePath(document.storagePath);
       
       const popplerOpts = {
-        format: 'png',
-        out_dir: outputDir,
-        out_prefix: 'page',
-        page: null
+        pngFile: true
       };
       
       try {
-        await pdfPoppler.convert(pdfPath, popplerOpts);
+        const poppler = new Poppler();
+        await poppler.pdfToCairo(pdfPath, path.join(outputDir, 'page'), popplerOpts);
       } catch (err) {
         logger.error(`[ExportImages] Poppler failed: ${err.message}`);
         throw new Error('Document renderer (Poppler) is not available on the server or failed to render.');

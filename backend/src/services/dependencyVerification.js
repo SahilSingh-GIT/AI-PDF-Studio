@@ -71,7 +71,7 @@ export const verifyDependencies = async () => {
   }
 
   // 3. Check Poppler (pdftocairo or pdftoppm)
-  // pdf-poppler uses pdftocairo
+  // node-poppler uses pdftocairo
   const hasPoppler = await checkCommand('pdftocairo -v');
   if (!hasPoppler) {
     logger.warn('[DependencyVerification] ⚠️ Poppler (pdftocairo) is not available in PATH. Image export (PPTX, Images) will fail.');
